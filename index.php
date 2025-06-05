@@ -1,8 +1,6 @@
 <?php
-//require_once "users.json";
 require_once 'vendor/autoload.php';
 
-use Faker\Factory;
 use Pavel\Db\Users;
 $user = new Users();
 $file = 'users.json';

@@ -12,11 +12,11 @@ class Users
     public function __construct()
     {
 
-            if (!file_exists($this->filename)) {
-                $this->usersOnArray = [];
-            }
-            $json = file_get_contents($this->filename);
-            $this->usersOnArray = json_decode($json, true) ?: [];
+        if (!file_exists($this->filename)) {
+            $this->usersOnArray = [];
+        }
+        $json = file_get_contents($this->filename);
+        $this->usersOnArray = json_decode($json, true) ?: [];
     }
 
     private function getLastId()
@@ -44,7 +44,7 @@ class Users
     }
     public function createUser(): void
     {
-//        $newData = $this->newUser();
+        // $newData = $this->newUser();
         $this->saveUser($this->filename, $this->newUser());
     }
 
