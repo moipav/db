@@ -44,7 +44,7 @@ class Users
     }
     public function createUser(): void
     {
-        $newData = $this->newUser();
+//        $newData = $this->newUser();
         $this->saveUser($this->filename, $this->newUser());
     }
 
