@@ -1,0 +1,12 @@
+{
+    "name": "pavel/db",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Pavel\\Db\\": "src/"
+        }
+    },
+    "require": {
+        "fakerphp/faker": "^1.24"
+    }
+}
