@@ -34,10 +34,23 @@ class UserJsonStorage implements UserStorageInterface
         return $this->usersOnArray;
     }
 
+
+    #[\Override] public function saveUser(string $storage, array $newData)
+    {
+        $dataJSON = json_encode($newData);
+        file_put_contents($storage, $dataJSON);
+    }
+
+
+    #[\Override] public function createUser(): void
+    {
+        $this->saveUser($this->filename, $this->newUser());
+    }
     public function getFilename()
     {
         return $this->filename;
     }
+
     #[\Override] public function showUsers()
     {
         foreach ($this->usersOnArray as $users) {
@@ -47,7 +60,6 @@ class UserJsonStorage implements UserStorageInterface
             echo "\n-------------------------------------------\n";
         }
     }
-
     #[\Override] public function deleteUser($id)
     {
         foreach ($this->usersOnArray as $k => $value) {
@@ -57,20 +69,8 @@ class UserJsonStorage implements UserStorageInterface
         }
         $this->saveUser($this->filename, (array)$this->usersOnArray);
     }
-
-    #[\Override] public function saveUser(string $storage, array $newData)
-    {
-        $dataJSON = json_encode($newData);
-        file_put_contents($storage, $dataJSON);
-    }
-
     #[\Override] public function getLastId()
     {
         return !empty($this->usersOnArray) ? $this->usersOnArray[array_key_last((array)$this->usersOnArray)]["id"] : 0;
-    }
-
-    #[\Override] public function createUser(): void
-    {
-        $this->saveUser($this->filename, $this->newUser());
     }
 }

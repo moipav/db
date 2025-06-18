@@ -5,18 +5,11 @@ use Pavel\Db\Users;
 
 require_once 'vendor/autoload.php';
 
-$json = new \Pavel\Db\UserJsonStorage();
-$user = new Users($json);
+//$json = new \Pavel\Db\UserJsonStorage();
+$db = new \Pavel\Db\UserDbStorage();
+$user = new Users($db);
 $file = 'users.json';
-//echo phpinfo();
 
-
-//$db = new Databasee();
-//
-//$db->query("SELECT * FROM users");
-//$result = $db->resultSet();
-//var_dump($result);
-//exit();
 /*******Menu***********/
 
 function printMenu()

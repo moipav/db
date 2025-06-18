@@ -5,15 +5,16 @@ namespace Pavel\Db;
 use PDO;
 use PDOException;
 
-class Databasee {
-    private $host = 'localhost';  // адрес сервера
+class Databasee
+{
+    private $host = 'localhost:3307';  // адрес сервера
     private $db   = 'db';  // имя базы данных
     private $user = 'root';  // имя пользователя
     private $pass = '';  // пароль
     private $charset = 'utf8mb4';  // кодировка
 
-    private $pdo;
-    private $error;
+    private PDO $pdo;
+    private string $error;
     private $stmt;
 
     public function __construct() {
@@ -60,8 +61,8 @@ class Databasee {
     }
 
     // Метод для выполнения подготовленного запроса
-    public function execute() {
-        return $this->stmt->execute();
+    public function execute(array $params = []) {
+        return $this->stmt->execute($params);
     }
 
     // Получаем все результаты
