@@ -13,6 +13,7 @@ class UserDbStorage implements UserStorageInterface
     {
         $this->DB = new Databasee();
     }
+
     #[\Override] public function newUser()
     {
         $faker = Factory::create();
@@ -46,10 +47,7 @@ class UserDbStorage implements UserStorageInterface
         $this->DB->execute($params);
     }
 
-    #[\Override] function saveUser(string $storage, array $newData)
-    {
-        // TODO: Implement saveUser() method.
-    }
+
 
     #[\Override] public function showUsers()
     {
@@ -62,11 +60,9 @@ class UserDbStorage implements UserStorageInterface
 
     #[\Override] public function deleteUser($id)
     {
-        // TODO: Implement deleteUser() method.
+        $this->DB->query("DELETE FROM users WHERE id = :id");
+        $this->DB->execute(['id' => $id]);
     }
 
-    #[\Override] public function getLastId()
-    {
-        // TODO: Implement getLastId() method.
-    }
+
 }
