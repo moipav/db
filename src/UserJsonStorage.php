@@ -19,6 +19,7 @@ class UserJsonStorage implements UserStorageInterface
 
         $this->usersOnArray = json_decode($json, true) ?: [];
     }
+
     #[\Override] public function newUser()
     {
         $faker = Factory::create();
@@ -35,7 +36,6 @@ class UserJsonStorage implements UserStorageInterface
 
         return $this->usersOnArray;
     }
-
 
     private function saveUser(string $storage, array $newData)
     {
@@ -75,4 +75,11 @@ class UserJsonStorage implements UserStorageInterface
     {
         return !empty($this->usersOnArray) ? $this->usersOnArray[array_key_last((array)$this->usersOnArray)]["id"] : 0;
     }
+
+    public function createRealUser(array $newData): void
+    {
+        $this->saveUser($this->filename, $newData);
+    }
+
+
 }

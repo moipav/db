@@ -9,7 +9,7 @@ class UserStorageFactory
     {
         if ($type === 'json') {
             return new UserJsonStorage();
-        } elseif ($type === 'db') {
+        } elseif ($type === 'mysql') {
             return new UserDbStorage();
         }
     }

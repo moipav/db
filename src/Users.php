@@ -2,11 +2,8 @@
 
 namespace Pavel\Db;
 
-use Faker\Factory;
-
 class Users
 {
-
 
     protected UserStorageInterface $storage;
 
@@ -20,13 +17,18 @@ class Users
         $this->storage->createUser();
     }
 
-    public function showUsers(): void
+    public function showUsers()
     {
-        $this->storage->showUsers();
+        return $this->storage->showUsers();
     }
 
     public function deleteUser($id): void
     {
         $this->storage->deleteUser($id);
+    }
+
+    public function createRealUser($newUser): void
+    {
+        $this->storage->createRealUser($newUser);
     }
 }

@@ -6,7 +6,7 @@ use Faker\Factory;
 
 class UserDbStorage implements UserStorageInterface
 {
-    private $DB;
+    private Databasee $DB;
     private array $usersOnArray;
 
     public function __construct()
@@ -26,6 +26,7 @@ class UserDbStorage implements UserStorageInterface
             "date_to_created" => date("d-m-Y H:i:s")
         ];
         $this->usersOnArray[] = $new_user;
+
         return $new_user;
     }
 
@@ -42,15 +43,11 @@ class UserDbStorage implements UserStorageInterface
         $this->DB->execute($params);
     }
 
-
-
     #[\Override] public function showUsers()
     {
         $this->DB->query("SELECT * FROM users");
         $result = $this->DB->resultSet();
-        echo __CLASS__;
-        echo "\n" . __METHOD__;
-        var_dump($result);
+        return $result;
     }
 
     #[\Override] public function deleteUser($id)
@@ -59,5 +56,15 @@ class UserDbStorage implements UserStorageInterface
         $this->DB->execute(['id' => $id]);
     }
 
-
+    public function createRealUser(array $new_user)
+    {
+        $params = [
+            'name' => $new_user['name'],
+            'surname' => $new_user['surname'],
+            'email' => $new_user['email'],
+            'year_of_birth' => (int)$new_user['year_of_birth']
+        ];
+        $this->DB->query("INSERT INTO `users`(name, surname, email, year_of_birth) VALUES (:name,:surname,:email, :year_of_birth)");
+        $this->DB->execute($params);
+    }
 }
