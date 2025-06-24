@@ -2,13 +2,14 @@
 
 use Pavel\Db\Databasee;
 use Pavel\Db\Users;
+use Pavel\Db\UserStorageFactory;
 
 require_once 'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-//$json = new \Pavel\Db\UserJsonStorage();
-$db = new \Pavel\Db\UserDbStorage();
+$db = UserStorageFactory::create($_ENV['DB_SOURCE']);
 $user = new Users($db);
-$file = 'users.json';
 
 /*******Menu***********/
 

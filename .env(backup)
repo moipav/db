@@ -1,0 +1,9 @@
+# json | mysql
+DB_SOURCE = ''
+
+#connect to db
+DB_HOST = ''
+DB_NAME = ''
+DB_USER = ''
+DB_PASS = ''
+DB_CHARSET = ''
