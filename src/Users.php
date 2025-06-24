@@ -15,11 +15,6 @@ class Users
         $this->storage = $storage;
     }
 
-    private function newUser()
-    {
-
-    }
-
     public function createUser(): void
     {
         $this->storage->createUser();

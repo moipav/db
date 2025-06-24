@@ -17,9 +17,8 @@ class UserDbStorage implements UserStorageInterface
     #[\Override] public function newUser()
     {
         $faker = Factory::create();
-//        $lastID = $this->getLastId($this->usersOnArray);
+
         $new_user = [
-//            "id" => ++$lastID,
             "name" => $faker->name,
             "surname" => $faker->lastName,
             "email" => $faker->email,
@@ -33,7 +32,6 @@ class UserDbStorage implements UserStorageInterface
     #[\Override] public function createUser()
     {
         $new_user = $this->newUser();
-//        var_dump($new_user);
         $params = [
             'name' => $new_user['name'],
             'surname' => $new_user['surname'],
@@ -41,9 +39,6 @@ class UserDbStorage implements UserStorageInterface
             'year_of_birth' => (int)$new_user['year_of_birth']
         ];
         $this->DB->query("INSERT INTO `users`(name, surname, email, year_of_birth) VALUES (:name,:surname,:email, :year_of_birth)");
-//        foreach ($params as $param => $value) {
-//            $this->DB->bind($param, $value,);
-//        }
         $this->DB->execute($params);
     }
 

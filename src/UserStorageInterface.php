@@ -10,10 +10,6 @@ interface UserStorageInterface
 
     public function deleteUser($id);
 
-//    public function saveUser(string $storage, array $newData );
-
-//    public function getLastId();
-
     public function createUser();
 }
 

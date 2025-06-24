@@ -16,6 +16,7 @@ class UserJsonStorage implements UserStorageInterface
             $this->usersOnArray = [];
         }
         $json = file_get_contents($this->filename);
+
         $this->usersOnArray = json_decode($json, true) ?: [];
     }
     #[\Override] public function newUser()
@@ -31,6 +32,7 @@ class UserJsonStorage implements UserStorageInterface
             "date_to_created" => date("d-m-Y H:i:s")
         ];
         $this->usersOnArray[] = $new_user;
+
         return $this->usersOnArray;
     }
 
@@ -46,7 +48,7 @@ class UserJsonStorage implements UserStorageInterface
     {
         $this->saveUser($this->filename, $this->newUser());
     }
-    public function getFilename()
+    public function getFilename(): string
     {
         return $this->filename;
     }
@@ -54,17 +56,17 @@ class UserJsonStorage implements UserStorageInterface
     #[\Override] public function showUsers()
     {
         foreach ($this->usersOnArray as $users) {
-            foreach ($users as $k => $v) {
-                echo $k . ": " .$v . "\n";
+            foreach ($users as $key => $value) {
+                echo $key . ": " .$value . "\n";
             }
             echo "\n-------------------------------------------\n";
         }
     }
     #[\Override] public function deleteUser($id)
     {
-        foreach ($this->usersOnArray as $k => $value) {
+        foreach ($this->usersOnArray as $key => $value) {
             if ($value["id"]  == $id) {
-                unset($this->usersOnArray[$k]);
+                unset($this->usersOnArray[$key]);
             }
         }
         $this->saveUser($this->filename, (array)$this->usersOnArray);
