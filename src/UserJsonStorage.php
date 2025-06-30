@@ -82,5 +82,4 @@ class UserJsonStorage implements UserStorageInterface
         $this->saveUser($this->filename, $this->usersOnArray);
     }
 
-
 }
