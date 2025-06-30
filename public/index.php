@@ -10,7 +10,7 @@
 <body>
 <a href="/list-users">Посмотреть список всех пользователей</a> |
 <a href="/create-user">Добавить пользвателя</a>
-<?= !empty($users) ?>
+<?= !empty($list_users) ?>
 <?= !empty($form) ?>
 </body>
 </html>
@@ -36,7 +36,7 @@ $segments = explode('/', trim($uri, '/'));
 if ($segments[0] == 'list-users') {
     http_response_code(200);
     $users = $user->showUsers();
-    $users = require_once 'users.php';
+    $list_users = include 'users.php';
 } elseif ($segments[0] == 'create-user') {
     http_response_code(200);
     $form = require_once 'form.php';
@@ -47,42 +47,3 @@ if ($segments[0] == 'list-users') {
     http_response_code(200);
     $user->deleteUser($_GET['id']);
 }
-
-?>
-
-
-
-<?php
-/*
-printMenu();
-$line = trim(fgets(STDIN));
-
-switch ($line) {
-    case 1:
-        $user->showUsers();
-        break;
-    case 2:
-        $user->createUser();
-        break;
-    case 3:
-        echo "Введите ID пользвателя, которого хотите удалить:\n";
-        $id = trim(fgets(STDIN));
-        $user->deleteUser($id);
-        break;
-    case 0: break;
-    default: echo "Вы выбрали не существующий пункт меню";
-}*/
-
-
-/*
-
-/* ## Третий этап
-
-Теперь нам необходимо продублировать все те же операции над пользователями (удаление, создание, просмотр списка), но с помощью HTTP
-т.е. будет 3 URL, например:
-
-1. GET /list-users. выводит список пользователей
-2. DELETE /delete-user/{id}. удаляет пользователя с переданным id
-3. POST /create-user. создаёт пользователя с переданными данными. данные должны приниматься в формате JSON
-
-Ответы должны быть в формате JSON.*/

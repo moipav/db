@@ -69,7 +69,7 @@ class UserJsonStorage implements UserStorageInterface
                 unset($this->usersOnArray[$key]);
             }
         }
-        $this->saveUser($this->filename, (array)$this->usersOnArray);
+        $this->saveUser($this->filename, $this->usersOnArray);
     }
     private function getLastId()
     {
@@ -78,7 +78,8 @@ class UserJsonStorage implements UserStorageInterface
 
     public function createRealUser(array $newData): void
     {
-        $this->saveUser($this->filename, $newData);
+        $this->usersOnArray[] = $newData;
+        $this->saveUser($this->filename, $this->usersOnArray);
     }
 
 

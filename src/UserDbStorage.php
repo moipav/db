@@ -46,8 +46,8 @@ class UserDbStorage implements UserStorageInterface
     #[\Override] public function showUsers()
     {
         $this->DB->query("SELECT * FROM users");
-        $result = $this->DB->resultSet();
-        return $result;
+//        var_dump($this->DB->resultSet());
+        return $this->DB->resultSet();
     }
 
     #[\Override] public function deleteUser($id)

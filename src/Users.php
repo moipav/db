@@ -9,7 +9,7 @@ class Users
 
     public function __construct(UserStorageInterface $storage)
     {
-        $this->storage = $storage;
+        $this->setStorage($storage);
     }
 
     public function createUser(): void
@@ -29,6 +29,12 @@ class Users
 
     public function createRealUser($newUser): void
     {
+        $this->setStorage(UserStorageFactory::create($newUser['storage']));
         $this->storage->createRealUser($newUser);
+    }
+
+    public function setStorage(UserStorageInterface $storage)
+    {
+        return $this->storage = $storage;
     }
 }
