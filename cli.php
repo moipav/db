@@ -32,6 +32,18 @@ switch ($line) {
         $user->showUsers();
         break;
     case 2:
+        echo "Выберете куда сохранить запись,сейчас: 1-mysql\n 2-json\n Сейчас:" . $_ENV['DB_SOURCE'];
+        $choice = trim(fgets(STDIN));
+        if ( $choice === '1') {
+            $select = 'mysql';
+        } elseif ($choice === '2') {
+            $select = 'json';
+        } else {
+            $select = $_ENV['DB_SOURCE'];
+        }
+
+        $storage = $user->setStorage(UserStorageFactory::create($select));
+        $user->setStorage($storage);
         $user->createUser();
         break;
     case 3:
